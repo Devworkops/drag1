@@ -15,6 +15,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          GITHUB_TOKEN: ${{ secrets.Token }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           BRANCH: gh-pages  # Branch to deploy to, usually 'gh-pages'
           FOLDER: .  # Folder containing your HTML file(s), adjust if necessary
