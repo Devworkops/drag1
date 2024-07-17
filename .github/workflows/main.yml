@@ -3,18 +3,23 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this to your default branch name if different
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          BRANCH: gh-pages  # Branch to deploy to, usually 'gh-pages'
-          FOLDER: .  # Folder containing your HTML file(s), adjust if necessary
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Pages
+      run: |
+        mkdir -p ./public
+        cp -R ./index.html ./public/
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.TOKEN }}
+        publish_dir: ./public
